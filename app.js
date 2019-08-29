@@ -3,7 +3,7 @@ const app = express()
 
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
-const morgan = require('morgan')
+const logger = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
@@ -22,7 +22,7 @@ mongoose.Promise = global.Promise
 
 // Middleware
 app.use(cors())
-app.use(morgan('dev'))
+app.use(logger('dev'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
