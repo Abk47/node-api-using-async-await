@@ -10,7 +10,7 @@ exports.usersRegister = async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message)
 
   // Checking if the user's email is already in the database
-  const emailExists = await User.findOne({ email: req.body.email })
+  const emailExists = await User.findOne({ email: req.body.email }).exec()
   if (emailExists) return res.status(422).send('Email already exists!')
 
   // HASHING Passwords
@@ -35,9 +35,9 @@ exports.usersLogin = async (req, res) => {
   // VALIDATING DATA BEFORE USER IS LOGGED IN USING IMPORTED JOI VALIDATION FILE
   const { error } = loginValidation(req.body)
   if (error) return res.status(400).send(error.details[0].message)
-  
+ 
   // Checking if the user's email is valid or exists in the database
-  const user = await User.findOne({ email: req.body.email })
+  const user = await User.findOne({ email: req.body.email }).exec()
   if (!user) return res.status(401).send('Invalid Email or Password')
   
   // Checking if PASSWORD is correct
