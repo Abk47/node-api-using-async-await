@@ -15,7 +15,7 @@ dotenv.config()
 
 // Connect to DB
 mongoose.connect(
-  process.env.DB_CONNECT,
+  `${process.env.DB_CONNECT}`,
   { useNewUrlParser: true },
   () => console.log('Connected to the database'))
 mongoose.Promise = global.Promise
@@ -29,6 +29,11 @@ app.use(bodyParser.json())
 // Route Middleware
 app.use('/api/user', authRoute)
 app.use('/api/user/posts', postRoute)
+
+// Testing end point
+app.get('/test', async (req, res) => {
+  res.status(200).json({ message: 'Test passed!' })
+})
 
 // Handle Global Errors
 app.use((req, res, next) => {
