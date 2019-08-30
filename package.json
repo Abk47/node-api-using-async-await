@@ -8,6 +8,9 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "author": "Abuka",
   "license": "ISC",
   "dependencies": {
@@ -20,6 +23,7 @@
     "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.11",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "supertest": "^4.0.2"
   }
 }
